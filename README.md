@@ -17,6 +17,7 @@
 | `references/accessibility.md` | 对齐 WCAG 2.2 AA：感知、操作、理解、健壮、用户偏好、测试方法 |
 | `references/ai-chat.md` | 流式输出、思考折叠、输入框（含中文输入法）、复制反馈、自动滚动 |
 | `references/checklist.md` | 可逐条打勾的审查清单（A~K 十一组） |
+| `examples/ai-client.html` | 按这份规范写的 AI 客户端单文件 demo，直接用浏览器打开。左下角「演示开关」可以触发请求失败、断网和慢加载 |
 | `assets/tokens.css` | 起步 token：只改 `--hue` 就能换出整套带品牌色调的灰阶，对比度已经验算 |
 
 ## 安装
