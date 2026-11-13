@@ -1,39 +1,42 @@
 # premium-ui-standards
 
-一个 Claude Code skill：大厂级 UI/UX 质感规范。写界面、审界面、给 AI 写界面提示词时，用它来守住工艺细节，包括层次、字体、间距、圆角、阴影、动效、状态、无障碍，以及 AI 对话界面的专项标准。
+供 Claude Code、Codex 等 AI 编码助手实现和审查 Web UI 的质量规范。采用可执行默认值、状态合同与是/否清单；品牌方向由项目决定。适用边界见 [入口](SKILL.md#覆盖范围)，不覆盖原生平台、图表、品牌视觉、完整国际化/RTL。
 
-它管的是「质量底线」，不管「长什么样」，可以和任何品牌风格或设计 skill 搭配使用。
-
-## 内容
+## 目录与按需阅读
 
 | 文件 | 内容 |
 |---|---|
-| `SKILL.md` | 使用方式 + 十条速览 |
-| `references/foundations.md` | 颜色层次、文字对比度、字体、间距、圆角、阴影、状态 |
-| `references/motion.md` | 时长、缓动、按性格选弹簧参数、常用模式、降级 |
-| `references/patterns.md` | 反馈分级、危险操作、加载、保存、表单、空状态、错误降级、渐进披露、新手引导 |
-| `references/content.md` | 文案原则、错误与空状态文案、数字 / 金额 / 日期格式、脱敏 |
-| `references/layout.md` | 栅格、典型布局、响应式、最小视口、点击区域、z-index |
-| `references/accessibility.md` | 对齐 WCAG 2.2 AA：感知、操作、理解、健壮、用户偏好、测试方法 |
-| `references/ai-chat.md` | 流式输出、思考折叠、输入框（含中文输入法）、复制反馈、自动滚动 |
-| `references/checklist.md` | 可逐条打勾的审查清单（A~K 十一组） |
-| `examples/ai-client.html` | 按这份规范写的 AI 客户端单文件 demo，直接用浏览器打开。左下角「演示开关」可以触发请求失败、断网和慢加载 |
-| `assets/tokens.css` | 起步 token：只改 `--hue` 就能换出整套带品牌色调的灰阶，对比度已经验算 |
+| [SKILL.md](SKILL.md) | 简短入口、三种流程与十条速览 |
+| [references/foundations.md](references/foundations.md) | 颜色层次、排版、形状、视觉状态 |
+| [references/layout.md](references/layout.md) | 栅格、响应式、极端内容、滚动与历史 |
+| [references/motion.md](references/motion.md) | 弹簧性格、缓动、可中断运动与降级 |
+| [references/patterns.md](references/patterns.md) | 反馈选择、保存、表单与并发校验 |
+| [references/async-feedback.md](references/async-feedback.md) | 加载延迟、乐观回滚、通知与取消的代码骨架 |
+| [references/content.md](references/content.md) | 文案、数字日期与脱敏 |
+| [references/accessibility.md](references/accessibility.md) | 键盘、焦点、复合控件、读屏与偏好 |
+| [references/performance.md](references/performance.md) | 性能预算、首屏、字体及长内容测量 |
+| [references/complex-components.md](references/complex-components.md) | 表格、查询、固定列与批量结果 |
+| [references/complex-workflows.md](references/complex-workflows.md) | 上传状态与命令面板结构 |
+| [references/token-engineering.md](references/token-engineering.md) | 三层 token、单位、主题及层级合同 |
+| [references/ai-chat.md](references/ai-chat.md) | 流式、引用附件、分支、长会话及工具恢复 |
+| [references/checklist.md](references/checklist.md) | 所有任务的最终是/否验收 |
+| [references/sources.md](references/sources.md) | 按主题追溯公开出处与来源边界 |
+| [assets/tokens.css](assets/tokens.css) | 基础/语义/组件三层，rem 字号、状态色与层级 |
+| [examples/ai-client.html](examples/ai-client.html) | 独立内嵌 token 的既有交互快照，回复为模拟数据 |
+| [assets/audit.py](assets/audit.py) | 无依赖静态验收脚本，不替代浏览器验收 |
 
-## 安装
+## Claude Code 中使用
 
-```bash
-git clone https://github.com/yxhpy/premium-ui-standards ~/.claude/skills/premium-ui-standards
-```
+手动将整个 premium-ui-standards 目录放入目标项目的 `.claude/skills/premium-ui-standards/`，保留 SKILL.md、references、assets 的相对结构。启动目标项目会话后明确请求使用 premium-ui-standards；若未发现技能，直接要求读取项目中的 SKILL.md，再按索引加载参考。也可不复制，直接在任务中引用本目录入口的绝对路径。
 
-## 来源
+## Codex 中使用
 
-- 抖音 @Ludi《扒了大厂AI客户端源码，质感全靠这5招！》中的五个细节：微明度分层、暗色字重减细、流式晕染、等宽数字与网格展开、动效分性格
-- Ant Design 设计规范（文案、数据格式、反馈、表单页、布局）
-- GitHub Primer 设计规范（loading、saving、notification-messaging、degraded-experiences、progressive-disclosure、empty-states、responsive）
-- W3C WCAG 2.2（含 2.2 新增条款）
-- Vercel Streamdown 的流式渲染实现
-- MDN browser-compat-data（2026-11）中的浏览器支持数据
-- WCAG 2 对比度要求
+无需安装即可在任务里明确要求：“先读取 /Users/yxhpy/Desktop/ui拆解/premium-ui-standards/SKILL.md，按对应参考实现，最后过 checklist。”也可将整个目录复制到目标仓库的文档目录，在该项目 AGENTS.md 中写入读取入口、按需加载参考、最后过清单的要求。相对路径以目标项目实际位置为准；这是项目引用方式，不承诺自动技能发现。本次仅提供说明，未执行安装或修改个人配置。
 
-视频里的具体数值（比如「粗 10%~15%」）找不到出处的，都已标注为经验值。
+## 来源与默认值
+
+公开出处按 15 个主题集中在 [sources.md](references/sources.md)，研究条目来自既有 research 调研，本轮未联网重新核实；浏览器验收补充单列，不计入 128 条。正文不逐条附来源，区分标准阈值、系统约定和建议默认；不同设计系统数值保留适用语境。
+
+保留既有视频工艺：微明度分层与双环聚焦、暗色字重减细、水墨式流式输出、等宽数字与网格展开、分性格动效。默认值需在实际字体、主题背景和目标设备上验收。示例字号已经用 rem；其品牌色、圆角、字号角色和交互保持原样，未强行与新起步配方同步。
+
+运行 `python3 assets/audit.py` 检查链接、入口、CSS、引用和行数；真实 UI 的键盘、读屏、性能与主题验收按 checklist 执行。

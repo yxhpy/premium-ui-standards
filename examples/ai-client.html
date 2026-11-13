@@ -415,6 +415,10 @@ dialog form { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 }
 @media (min-width: 768px) { .only-mobile, .scrim { display: none !important; } }
 
+@media (pointer: coarse), (max-width: 40rem) {
+  input:not([type="checkbox"]):not([type="radio"]), textarea, .composer textarea, select { font-size: max(1rem, 16px); }
+}
+
 /* ---------- 用户偏好 ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
