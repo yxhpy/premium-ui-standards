@@ -1,6 +1,6 @@
 ---
 name: premium-ui-standards
-description: 大厂级 UI/UX 规范：视觉质感（层次、字体、间距、圆角、阴影、动效）、交互模式（反馈、加载、保存、表单、空状态、错误降级、渐进披露）、文案与数据格式、布局与响应式、无障碍（WCAG 2.2 AA），性能观感、复杂组件、token 工程，以及 AI 对话高级场景专项；并含一份从需求判断该用什么界面与交互的标准流程（SOP）。在新建或修改前端界面、给界面「提质感」、审查 UI 代码或截图、为 AI 写界面提示词时使用。它管的是质量底线和工艺细节，不替代品牌或视觉风格的决策。
+description: 大厂级 UI/UX 规范：视觉质感（层次、字体、间距、圆角、阴影、动效）、交互模式（反馈、加载、保存、表单、空状态、错误降级、渐进披露）、文案与数据格式、布局与响应式、无障碍（WCAG 2.2 AA），性能观感、复杂组件、token 工程，以及 AI 对话高级场景专项；并含一份从需求判断该用什么界面与交互的标准流程（SOP）、整页一致性与像素级验收（全局合同加普查脚本）和落地页专题。在新建或修改前端界面、给界面「提质感」、审查 UI 代码或截图、为 AI 写界面提示词时使用。它管的是质量底线和工艺细节，不替代品牌或视觉风格的决策。
 ---
 
 # 大厂 UI/UX 规范
@@ -10,6 +10,7 @@ description: 大厂级 UI/UX 规范：视觉质感（层次、字体、间距、
 ## 怎么用
 
 - **先判断再动手**：新建或修改界面前，先按 [需求判断 SOP](references/sop.md) 确认事实、判定需求类型、逐项选定交互，写出方案单给用户看，再实现。一句话需求也走一遍，每步一行即可。
+- **先全局后局部**：动手前按 [整页一致性](references/coherence.md) 写全局合同（对齐线、区块节奏、字号角色、圆角与控件档位），区块只引用合同里的值；交付前在真实浏览器里跑 [普查脚本](assets/page-census.js)。局部合格但整页不一致，不算完成。
 - **新建界面**：先明确 Web 任务、品牌方向与目标浏览器；走完 SOP 后读 [基础](references/foundations.md)、[布局](references/layout.md)、[token 工程](references/token-engineering.md)，再以 [token](assets/tokens.css) 起步，按功能加载下表；交付前必须过 [checklist](references/checklist.md)。
 - **修改界面**：先读现有组件与 token，按 SOP 判断改动涉及的交互，加载 [token 工程](references/token-engineering.md) 和改动主题对应参考；保留现有品牌及交互合同，补齐相关状态；最后必须过完整 checklist，注明不适用项。
 - **审查界面**：先读 [checklist](references/checklist.md) 与对应主题参考，再检查代码、截图或真实交互；按条目给出是/否、文件:行号（截图给位置）、证据与建议。未测行为明确写未核实，不从截图推断通过；最后复核完整 checklist。
@@ -18,6 +19,8 @@ description: 大厂级 UI/UX 规范：视觉质感（层次、字体、间距、
 | 参考文件 | 何时加载 |
 |---|---|
 | [sop.md](references/sop.md) | 接到需求时最先读：需求类型到页面骨架、交互判断表、状态矩阵与方案单 |
+| [coherence.md](references/coherence.md) | 新建或大改界面必读：全局合同、层级落差、像素级规则、整页普查与评审 |
+| [landing.md](references/landing.md) | 落地页、发布页、品牌叙事页：骨架、首屏、素材合同、展示型动效与验收 |
 | [foundations.md](references/foundations.md) | 颜色层次、排版、形状、视觉状态 |
 | [layout.md](references/layout.md) | 栅格、响应式、极端内容、滚动与历史 |
 | [motion.md](references/motion.md) | 弹簧性格、缓动、可中断运动与降级 |
@@ -55,7 +58,7 @@ description: 大厂级 UI/UX 规范：视觉质感（层次、字体、间距、
 **不覆盖**（需要时另找专门规范）：
 - iOS / Android 原生控件和平台交互：分别以 Apple HIG、Material 3 为准
 - 数据可视化的图表选型与配色：可以用 `dataviz` 类 skill
-- 品牌、插画、营销视觉
+- 品牌、插画和营销的视觉风格决策（落地页的页面逻辑、素材合同与验收已覆盖，见 landing.md）
 - 游戏和沉浸式 3D
 - 各行业的合规文案（金融、医疗等）
 - 完整的国际化（RTL 布局、多语言排版）：这里只提了 `Intl` 格式化

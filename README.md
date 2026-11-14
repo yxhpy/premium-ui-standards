@@ -8,6 +8,9 @@
 |---|---|
 | [SKILL.md](SKILL.md) | 简短入口、三种流程与十条速览 |
 | [references/sop.md](references/sop.md) | 需求判断 SOP：需求类型到页面骨架、交互判断表、状态矩阵与方案单 |
+| [references/coherence.md](references/coherence.md) | 整页一致性与像素级验收：全局合同、层级落差、像素规则、普查与整页评审 |
+| [references/landing.md](references/landing.md) | 落地页专题：骨架、首屏、素材合同、展示型动效、图形性能与验收 |
+| [assets/page-census.js](assets/page-census.js) | 整页普查脚本：在真实页面里执行，量出节奏、对齐线、字号、圆角、像素对齐等是否一致 |
 | [references/foundations.md](references/foundations.md) | 颜色层次、排版、形状、视觉状态 |
 | [references/layout.md](references/layout.md) | 栅格、响应式、极端内容、滚动与历史 |
 | [references/motion.md](references/motion.md) | 弹簧性格、缓动、可中断运动与降级 |
