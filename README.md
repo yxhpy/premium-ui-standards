@@ -7,6 +7,7 @@
 | 文件 | 内容 |
 |---|---|
 | [SKILL.md](SKILL.md) | 简短入口、三种流程与十条速览 |
+| [references/sop.md](references/sop.md) | 需求判断 SOP：需求类型到页面骨架、交互判断表、状态矩阵与方案单 |
 | [references/foundations.md](references/foundations.md) | 颜色层次、排版、形状、视觉状态 |
 | [references/layout.md](references/layout.md) | 栅格、响应式、极端内容、滚动与历史 |
 | [references/motion.md](references/motion.md) | 弹簧性格、缓动、可中断运动与降级 |
@@ -34,6 +35,8 @@
 无需安装即可在任务里明确要求：“先读取 /Users/yxhpy/Desktop/ui拆解/premium-ui-standards/SKILL.md，按对应参考实现，最后过 checklist。”也可将整个目录复制到目标仓库的文档目录，在该项目 AGENTS.md 中写入读取入口、按需加载参考、最后过清单的要求。相对路径以目标项目实际位置为准；这是项目引用方式，不承诺自动技能发现。本次仅提供说明，未执行安装或修改个人配置。
 
 ## 来源与默认值
+
+[需求判断 SOP](references/sop.md) 把现有规则按需求重新组织成分流表，属于建议默认，不新增出处，也不计入 128 条；与专题文件冲突时以专题文件为准。
 
 公开出处按 15 个主题集中在 [sources.md](references/sources.md)，研究条目来自既有 research 调研，本轮未联网重新核实；浏览器验收补充单列，不计入 128 条。正文不逐条附来源，区分标准阈值、系统约定和建议默认；不同设计系统数值保留适用语境。
 
