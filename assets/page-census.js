@@ -1,12 +1,30 @@
 // 整页普查：在目标页面的控制台或自动化 eval 里执行本文件全文，返回一份可比对的测量结果。
-// 只读页面，不修改任何东西。LIMITS 是建议默认，项目调整时在方案单的「例外」里记录理由。
+// 只读页面，不修改任何东西。DEFAULTS 是没有设计系统时的上限；偏离时在方案单的「例外」里记录理由。
+// 沿用设计系统时，运行前设 window.censusLimits（如 { radii: 4, controlHeights: 4 }）覆盖档数类上限，取值写进合同；
+// 只有字号种数、圆角、控件高度、描边宽度、过渡时长能覆盖，其余上限和 24px 点击区不跟体系走。覆盖值印在 limits 和 notices 里。
 // findings 是超出上限的条目；notices 是要人看一眼、但不算超限的提示；coverage 说明这次量到了哪些。
 // 区块写 data-census-region，属性值是对齐作用域（如 shell、pane、content）：同值的区块互相比对节奏和对齐线。
 // 同一标签承担不同字号角色时写 data-type-role；控件类别可用 data-control 声明。
 // 隐藏的状态（对话框、步骤、折叠区、移出画面的抽屉、隐藏的提示）量不到，会列进 notices：逐个打开后再跑。判读方法见 references/coherence.md。
 (() => {
-  const LIMITS = { sectionRhythms: 2, alignLines: 2, fontSizes: 9, smallTextShare: 0.25, radii: 3, durations: 4,
+  const DEFAULTS = { sectionRhythms: 2, alignLines: 2, fontSizes: 9, smallTextShare: 0.25, radii: 3, durations: 4,
     controlHeights: 3, borderWidths: 1, offGridValues: 2, regionTextShare: 0.8, tallControl: 64 };
+  // 只认这五项、只认正整数；写错的键和值忽略并提示，照默认判。
+  const SYSTEM_TIERS = ['fontSizes', 'radii', 'controlHeights', 'borderWidths', 'durations'];
+  const overridden = {}, ignored = [];
+  // 循环引用、BigInt 这类值写不成 JSON：只报类型，普查照常往下跑。
+  const show = v => { try { return JSON.stringify(v); } catch { return '（' + typeof v + '，无法显示）'; } };
+  // 读配置本身也可能抛错（取值器、撤销的 Proxy）：整份忽略，照默认上限跑完。取值都在 Object.entries 里完成，抛错时还没有任何一项生效。
+  try {
+    const asked = window.censusLimits ?? {};
+    for (const [k, v] of typeof asked === 'object' ? Object.entries(asked) : [['censusLimits', asked]]) {
+      if (SYSTEM_TIERS.includes(k) && Number.isInteger(v) && v > 0) overridden[k] = v;
+      else ignored.push(k + '=' + show(v));
+    }
+  } catch {
+    ignored.push('censusLimits=（读取出错，整份按默认上限）');
+  }
+  const LIMITS = { ...DEFAULTS, ...overridden };
   const cs = el => getComputedStyle(el);
   const rect = el => el.getBoundingClientRect();
   const shown = el => el.checkVisibility
@@ -59,6 +77,10 @@
   const findings = [], notices = [];
   const flag = (ok, text) => { if (!ok) findings.push(text); };
   const notice = (ok, text) => { if (!ok) notices.push(text); };
+  notice(!Object.keys(overridden).length, '上限按设计系统覆盖：' +
+    Object.entries(overridden).map(([k, v]) => k + ' ' + DEFAULTS[k] + ' → ' + v).join('，') + '。对照合同里写的档数核对');
+  notice(!ignored.length, '忽略了 ' + ignored.length + ' 项上限覆盖：' + ignored.join('，') +
+    '。只有 ' + SYSTEM_TIERS.join('、') + ' 能按设计系统覆盖，且取正整数');
   const dpr = devicePixelRatio;
   const media = el => ['IMG', 'CANVAS', 'VIDEO'].includes(el.tagName);
   // 颜色的不透明度：transparent 和 alpha 为 0 的颜色等于没画。
@@ -253,6 +275,7 @@
 
   return {
     env: { url: location.href, viewport: innerWidth + 'x' + innerHeight, dpr, elements: all.length, overflowX },
+    limits: { overridden, ignored },
     coverage: { mode, regions: blocks.length, scopes, textShare: regionShare, hiddenStates, styledText },
     findings,
     notices,

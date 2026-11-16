@@ -25,7 +25,7 @@
   超出时让外框随内容滚动、收起次要行或改成可展开；验收量阅读区剩下的高度，不只看有没有横向溢出。
 - 断点按内容来定，不按设备型号来定。常用参考值：640 / 768 / 1024 / 1280 / 1536。组件自身的适配优先用容器查询（`@container`），而不是视口断点。
 - **不要仅依赖 `pointer: coarse/fine` 隐藏核心功能**。很多设备同时支持触摸、鼠标和键盘，这个判断并不可靠。
-- 尊重用户偏好：浏览器默认字号（字号用 `rem`，不要把根字号写死成 px）、`prefers-reduced-motion`、`prefers-color-scheme`、`prefers-contrast`。
+- 尊重用户偏好：浏览器默认字号（字号用 `rem`，沿用体系时随体系；不要把根字号写死成 px）、`prefers-reduced-motion`、`prefers-color-scheme`、`prefers-contrast`。
 - 移动端在原留白上追加安全区：`padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px))`，横屏检查左右 inset、软键盘遮挡；视口高度用 `dvh`/`svh`，不用 `100vh`（会被浏览器地址栏遮挡）。
 - 弱设备、慢网及占位尺寸验收见 [性能观感](performance.md)。
 

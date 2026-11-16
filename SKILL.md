@@ -9,16 +9,16 @@ description: 大厂级 UI/UX 规范：视觉质感（层次、字体、间距、
 
 ## 怎么用
 
-- **先判断再动手**：新建或修改界面前，先按 [需求判断 SOP](references/sop.md) 确认事实、判定需求类型、逐项选定交互，写出方案单给用户看，再实现。一句话需求也走一遍，每步一行即可。
+- **先读项目再判断**：新建、修改、审查界面和写提示词，都先按 [SOP 第 0 节](references/sop.md#0-项目画像) 写项目画像，再定路线（体系、页面、验收）。能从项目读到的事实不套默认值，每个路线判断都附证据。
+- **先判断再动手**：按 [需求判断 SOP](references/sop.md) 补齐事实、定路线、逐项选定交互，写出方案单给用户看，再实现。一句话需求也走一遍，每步一行即可。
 - **先全局后局部**：动手前按 [整页一致性](references/coherence.md) 写全局合同（对齐线、区块节奏、字号角色、圆角与控件档位），区块只引用合同里的值；交付前在真实浏览器里跑 [普查脚本](assets/page-census.js)。局部合格但整页不一致，不算完成。
-- **新建界面**：先明确 Web 任务、品牌方向与目标浏览器；走完 SOP 后读 [基础](references/foundations.md)、[布局](references/layout.md)、[token 工程](references/token-engineering.md)，再以 [token](assets/tokens.css) 起步，按功能加载下表；交付前必须过 [checklist](references/checklist.md)。
-- **修改界面**：先读现有组件与 token，按 SOP 判断改动涉及的交互，加载 [token 工程](references/token-engineering.md) 和改动主题对应参考；保留现有品牌及交互合同，补齐相关状态；最后必须过完整 checklist，注明不适用项。
-- **审查界面**：先读 [checklist](references/checklist.md) 与对应主题参考，再检查代码、截图或真实交互；按条目给出是/否、文件:行号（截图给位置）、证据与建议。未测行为明确写未核实，不从截图推断通过；最后复核完整 checklist。
-- **写提示词**：引用入口与相关参考路径，写明采用的默认值、例外和验收方式；让实现助手读取细节，勿只粘贴口号。
+- **新建或修改界面**：新建时先明确 Web 任务与品牌方向。画像里有体系入口（主题、token、CSS 变量、组件库）就沿用它：合同的档位取自它，不叠起步 token，保留现有品牌及交互合同；确认没有入口才以 [token](assets/tokens.css) 起步。按功能读 [基础](references/foundations.md)、[布局](references/layout.md)、[token 工程](references/token-engineering.md) 和下表的对应参考，补齐相关状态；交付前必须过完整 [checklist](references/checklist.md)，注明不适用项。
+- **审查界面**：先写画像（至少技术栈、体系入口、现成写法），再读 [checklist](references/checklist.md) 与对应主题参考，检查代码、截图或真实交互；按条目给出是/否、文件:行号（截图给位置）、证据与建议。未测行为明确写未核实，不从截图推断通过；最后复核完整 checklist。
+- **写提示词**：附上项目画像和路线，引用入口与相关参考路径，写明采用的默认值、例外和验收方式；让实现助手读取细节，勿只粘贴口号。
 
 | 参考文件 | 何时加载 |
 |---|---|
-| [sop.md](references/sop.md) | 接到需求时最先读：需求类型到页面骨架、交互判断表、状态矩阵与方案单 |
+| [sop.md](references/sop.md) | 接到需求时最先读：项目画像与路线、交互判断表、状态矩阵与方案单 |
 | [coherence.md](references/coherence.md) | 新建或大改界面必读：全局合同、层级落差、像素级规则、整页普查与评审 |
 | [landing.md](references/landing.md) | 落地页、发布页、品牌叙事页：骨架、首屏、素材合同、展示型动效与验收 |
 | [foundations.md](references/foundations.md) | 颜色层次、排版、形状、视觉状态 |
@@ -65,6 +65,6 @@ description: 大厂级 UI/UX 规范：视觉质感（层次、字体、间距、
 
 ## 边界
 
-- 这份规范给的是方法和默认值。具体色值、圆角大小、品牌动效，以品牌规范或用户要求为准。
+- 这份规范给的是方法和默认值。具体色值、圆角大小、品牌动效，以项目现有设计系统、品牌规范或用户要求为准；无障碍底线不随之放宽。
 - 规则之间有冲突时，优先级为：无障碍 > 可用性 > 一致性 > 质感。
 - 参考中的浏览器版本为既有快照。按项目目标浏览器验证较新特性，并提供回退方案；不将快照当作当前全平台承诺。
