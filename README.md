@@ -25,6 +25,7 @@
 | [references/ai-chat.md](references/ai-chat.md) | 流式、引用附件、分支、长会话及工具恢复 |
 | [references/checklist.md](references/checklist.md) | 所有任务的最终是/否验收 |
 | [references/sources.md](references/sources.md) | 按主题追溯公开出处与来源边界 |
+| [references/external-skills.md](references/external-skills.md) | 外部 AI 设计 skill 的引用索引（只引用，不并入规则） |
 | [assets/tokens.css](assets/tokens.css) | 基础/语义/组件三层，rem 字号、状态色与层级 |
 | [examples/ai-client.html](examples/ai-client.html) | 独立内嵌 token 的既有交互快照，回复为模拟数据 |
 | [assets/audit.py](assets/audit.py) | 无依赖静态验收脚本，不替代浏览器验收 |

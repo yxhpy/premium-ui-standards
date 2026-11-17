@@ -35,6 +35,7 @@ description: 大厂级 UI/UX 规范：视觉质感（层次、字体、间距、
 | [ai-chat.md](references/ai-chat.md) | 流式、引用附件、分支、长会话及工具恢复 |
 | [checklist.md](references/checklist.md) | 所有任务的最终是/否验收 |
 | [sources.md](references/sources.md) | 按主题追溯公开出处与来源边界 |
+| [external-skills.md](references/external-skills.md) | 十个公开 AI 设计 skill 的引用索引：定位、许可，以及什么时候去看原文 |
 
 [AI 客户端示例](examples/ai-client.html) 是独立内嵌 token 的演示快照，非实时 API；需要具体写法时查阅。其品牌取值与起步 token 可不同，不直接批量替换。
 
